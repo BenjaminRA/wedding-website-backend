@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "passwords",
+  "info": {
+    "singularName": "password",
+    "pluralName": "passwords",
+    "displayName": "Password"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "password": {
+      "type": "string",
+      "private": true,
+      "required": true
+    }
+  }
+}

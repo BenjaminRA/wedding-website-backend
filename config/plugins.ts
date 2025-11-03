@@ -1,1 +1,5 @@
-export default () => ({});
+export default () => ({
+  'advanced-fields': {
+    enabled: true,
+  },
+});

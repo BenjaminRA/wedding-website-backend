@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_gift_registry_links",
+  "info": {
+    "displayName": "Registry Link",
+    "description": "Gift registry link"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

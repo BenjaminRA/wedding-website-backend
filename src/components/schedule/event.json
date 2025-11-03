@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_schedule_events",
+  "info": {
+    "displayName": "Event",
+    "description": "Schedule event"
+  },
+  "options": {},
+  "attributes": {
+    "time": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
