@@ -54,42 +54,42 @@ export default {
     console.log('Wedding Admin Panel loaded! 💍');
 
     // Add custom homepage widgets using Strapi v5 API
-    app.addMenuLink({
-      to: '/wedding-dashboard',
-      icon: () => (
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 50 50"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="25"
-            cy="25"
-            r="20"
-            fill="none"
-            stroke="#c0c0cf"
-            stroke-width="4"
-          />
-          <circle
-            cx="25"
-            cy="25"
-            r="16"
-            fill="none"
-            stroke="#c0c0cf"
-            stroke-width="4"
-          />
-        </svg>
-      ),
-      position: 0,
-      intlLabel: {
-        id: 'wedding-dashboard.title',
-        defaultMessage: 'Wedding Dashboard',
-      },
-      permissions: [],
-      Component: async () => {
-        return { default: WeddingDashboard };
-      },
-    });
+    // app.addMenuLink({
+    //   to: '/wedding-dashboard',
+    //   icon: () => (
+    //     <svg
+    //       width="20"
+    //       height="20"
+    //       viewBox="0 0 50 50"
+    //       xmlns="http://www.w3.org/2000/svg"
+    //     >
+    //       <circle
+    //         cx="25"
+    //         cy="25"
+    //         r="20"
+    //         fill="none"
+    //         stroke="#c0c0cf"
+    //         stroke-width="4"
+    //       />
+    //       <circle
+    //         cx="25"
+    //         cy="25"
+    //         r="16"
+    //         fill="none"
+    //         stroke="#c0c0cf"
+    //         stroke-width="4"
+    //       />
+    //     </svg>
+    //   ),
+    //   position: 0,
+    //   intlLabel: {
+    //     id: 'wedding-dashboard.title',
+    //     defaultMessage: 'Wedding Dashboard',
+    //   },
+    //   permissions: [],
+    //   Component: async () => {
+    //     return { default: WeddingDashboard };
+    //   },
+    // });
   },
 };
