@@ -27,7 +27,11 @@ export default factories.createCoreController(
         );
 
         // Validate password
-        if (!passwordData || passwordData.password !== password) {
+        if (
+          !passwordData ||
+          passwordData.password.trim().toLocaleUpperCase() !==
+            password.trim().toLocaleUpperCase()
+        ) {
           return ctx.unauthorized('Invalid password');
         }
 
