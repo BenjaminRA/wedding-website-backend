@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "guest_groups",
+  "info": {
+    "singularName": "guest-group",
+    "pluralName": "guest-groups",
+    "displayName": "Guest Group"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "groupName": {
+      "type": "string",
+      "required": true
+    },
+    "guests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::guest.guest",
+      "mappedBy": "guest_group"
+    },
+    "wishes": {
+      "type": "text"
+    }
+  }
+}

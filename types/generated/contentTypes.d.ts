@@ -572,6 +572,36 @@ export interface ApiGiftGift extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiGuestGroupGuestGroup extends Struct.CollectionTypeSchema {
+  collectionName: 'guest_groups';
+  info: {
+    displayName: 'Guest Group';
+    pluralName: 'guest-groups';
+    singularName: 'guest-group';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    groupName: Schema.Attribute.String & Schema.Attribute.Required;
+    guests: Schema.Attribute.Relation<'oneToMany', 'api::guest.guest'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::guest-group.guest-group'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    wishes: Schema.Attribute.Text;
+  };
+}
+
 export interface ApiGuestGuest extends Struct.CollectionTypeSchema {
   collectionName: 'guests';
   info: {
@@ -592,12 +622,16 @@ export interface ApiGuestGuest extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     firstName: Schema.Attribute.String & Schema.Attribute.Required;
+    guest_group: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::guest-group.guest-group'
+    >;
     lastName: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::guest.guest'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    rsvp: Schema.Attribute.Boolean & Schema.Attribute.Required;
+    rsvp: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     type: Schema.Attribute.Enumeration<['Adult', 'Child']> &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'Adult'>;
@@ -1304,6 +1338,7 @@ declare module '@strapi/strapi' {
       'api::dress-code.dress-code': ApiDressCodeDressCode;
       'api::gallery.gallery': ApiGalleryGallery;
       'api::gift.gift': ApiGiftGift;
+      'api::guest-group.guest-group': ApiGuestGroupGuestGroup;
       'api::guest.guest': ApiGuestGuest;
       'api::password.password': ApiPasswordPassword;
       'api::schedule.schedule': ApiScheduleSchedule;

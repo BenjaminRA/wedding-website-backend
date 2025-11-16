@@ -13,6 +13,15 @@ export default {
         middlewares: [],
       },
     },
+    {
+      method: 'POST',
+      path: '/guests/submit-rsvp',
+      handler: 'guest.submitRSVP',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
     // {
     //   method: 'GET',
     //   path: '/guests-rsvp-stats',

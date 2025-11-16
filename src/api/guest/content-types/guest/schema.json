@@ -42,7 +42,8 @@
     },
     "rsvp": {
       "type": "boolean",
-      "required": true
+      "required": false,
+      "default": false
     },
     "attending": {
       "type": "boolean",
@@ -56,6 +57,12 @@
           ]
         }
       }
+    },
+    "guest_group": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::guest-group.guest-group",
+      "inversedBy": "guests"
     }
   }
 }
