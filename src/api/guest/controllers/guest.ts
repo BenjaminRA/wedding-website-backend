@@ -126,6 +126,25 @@ export default factories.createCoreController(
           })
         );
 
+        // Get the guest group with all details for the email
+        const guestGroup = await strapi.entityService.findOne(
+          'api::guest-group.guest-group',
+          guest_group_id,
+          {
+            populate: ['guests'],
+          }
+        );
+
+        // Send email notification
+        try {
+          await strapi
+            .service('api::guest.guest')
+            .sendRSVPNotification(guestGroup, updatedGuests);
+        } catch (emailError) {
+          // Log the error but don't fail the RSVP submission
+          console.error('Failed to send email notification:', emailError);
+        }
+
         return { data: updatedGuests };
       } catch (err) {
         console.error('Error in submitRSVP:', err);
