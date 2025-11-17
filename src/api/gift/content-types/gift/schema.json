@@ -16,26 +16,25 @@
     }
   },
   "attributes": {
-    "title": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "description": {
-      "type": "richtext",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "registryLinks": {
+    "chile": {
       "type": "component",
-      "repeatable": true,
-      "component": "gift.registry-link"
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "gift.us-list-section",
+      "repeatable": false
+    },
+    "us": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "gift.us-list-section",
+      "repeatable": false
     }
   }
 }

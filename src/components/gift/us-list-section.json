@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_gift_us_list_sections",
+  "info": {
+    "displayName": "List Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "list": {
+      "type": "component",
+      "component": "gift.us-list-item",
+      "repeatable": true
+    },
+    "iframe": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

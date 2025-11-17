@@ -3,7 +3,22 @@ export default {
     const { locale } = ctx.query;
     const entity = await strapi.entityService.findMany('api::gift.gift', {
       locale: locale || 'en',
-      populate: '*',
+      populate: {
+        chile: {
+          populate: {
+            list: {
+              populate: ['icon'],
+            },
+          },
+        },
+        us: {
+          populate: {
+            list: {
+              populate: ['icon'],
+            },
+          },
+        },
+      },
     });
     return entity;
   },

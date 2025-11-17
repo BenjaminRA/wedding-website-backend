@@ -18,8 +18,13 @@
   "attributes": {
     "events": {
       "type": "component",
-      "repeatable": true,
-      "component": "schedule.event"
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "schedule.event",
+      "repeatable": true
     }
   }
 }

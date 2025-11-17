@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_gift_us_list_items",
+  "info": {
+    "displayName": "List Item"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
