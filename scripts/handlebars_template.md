@@ -1,5 +1,6 @@
 ---
 title: {{Nombre}}
+Invitation Sent: {{[Invitation Sent]}}
 RSVP: {{RSVP}}
 Attending: {{Attending}}
 Address: {{Address}}

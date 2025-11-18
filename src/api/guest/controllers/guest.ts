@@ -118,6 +118,7 @@ export default factories.createCoreController(
               guest.id,
               {
                 data: {
+                  invitationSent: true,
                   rsvp: true,
                   attending: guest.attending,
                 },
