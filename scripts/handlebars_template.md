@@ -1,9 +1,10 @@
 ---
 title: {{Nombre}}
-Family: {{Family}}
+RSVP: {{RSVP}}
+Attending: {{Attending}}
+Address: {{Address}}
+Group: {{Group}}
 Table: {{Table}}
 Type: {{Type}}
-Confirmed: {{Confirmed}}
-Group:
-- {{Group}}
+Country: {{Country}}
 ---

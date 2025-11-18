@@ -192,7 +192,7 @@ export default factories.createCoreController(
             fullName,
             guest.address, // Address - not tracked in current schema
             guest.guest_group?.groupName || '',
-            '', // Table - not tracked in current schema
+            guest.table, // Table - not tracked in current schema
             guest.type || 'Adult',
             guest.country || 'US',
           ];
@@ -365,6 +365,7 @@ export default factories.createCoreController(
             const name = fields[3] || '';
             const address = fields[4] || '';
             const groupName = fields[5] || '';
+            const table = fields[6] || '';
             const type = fields[7] || 'Adult';
             const country = fields[8] || '';
 
@@ -434,6 +435,7 @@ export default factories.createCoreController(
               firstName,
               lastName,
               address,
+              table,
               type: type || 'Adult',
               country: country || 'US',
             };
