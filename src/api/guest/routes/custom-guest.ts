@@ -22,6 +22,24 @@ export default {
         middlewares: [],
       },
     },
+    {
+      method: 'GET',
+      path: '/guests/export-csv',
+      handler: 'guest.exportCSV',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: 'POST',
+      path: '/guests/import-csv',
+      handler: 'guest.importCSV',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
     // {
     //   method: 'GET',
     //   path: '/guests-rsvp-stats',

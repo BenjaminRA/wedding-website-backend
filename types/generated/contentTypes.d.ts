@@ -612,9 +612,20 @@ export interface ApiGuestGuest extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    address: Schema.Attribute.String;
     attending: Schema.Attribute.Boolean;
     country: Schema.Attribute.Enumeration<
-      ['US', 'Chile', 'Spain', 'Canada', 'Switzerland', 'Ecuador']
+      [
+        'US',
+        'Chile',
+        'Spain',
+        'Canada',
+        'Switzerland',
+        'Ecuador',
+        'M\u00E9xico',
+        'Ireland',
+        'France',
+      ]
     > &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
@@ -625,7 +636,9 @@ export interface ApiGuestGuest extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::guest-group.guest-group'
     >;
-    lastName: Schema.Attribute.String & Schema.Attribute.Required;
+    invitationSent: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    lastName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::guest.guest'> &
       Schema.Attribute.Private;

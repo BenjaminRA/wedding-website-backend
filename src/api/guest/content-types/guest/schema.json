@@ -17,7 +17,7 @@
     },
     "lastName": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "type": {
       "type": "enumeration",
@@ -37,8 +37,15 @@
         "Spain",
         "Canada",
         "Switzerland",
-        "Ecuador"
+        "Ecuador",
+        "México",
+        "Ireland",
+        "France"
       ]
+    },
+    "invitationSent": {
+      "type": "boolean",
+      "default": false
     },
     "rsvp": {
       "type": "boolean",
@@ -63,6 +70,9 @@
       "relation": "manyToOne",
       "target": "api::guest-group.guest-group",
       "inversedBy": "guests"
+    },
+    "address": {
+      "type": "string"
     }
   }
 }
