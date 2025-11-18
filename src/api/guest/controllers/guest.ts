@@ -295,7 +295,7 @@ export default factories.createCoreController(
         };
 
         // Delete all existing guests and guest groups
-        console.log('Deleting existing guests and guest groups...');
+        // console.log('Deleting existing guests and guest groups...');
 
         const existingGuests: any = await strapi.entityService.findMany(
           'api::guest.guest',
@@ -325,7 +325,7 @@ export default factories.createCoreController(
           'guest_groups',
         ]);
 
-        console.log('Existing data cleared. Starting import...');
+        // console.log('Existing data cleared. Starting import...');
 
         // Map to store created groups
         const groupCache = new Map<string, number>();
@@ -425,9 +425,9 @@ export default factories.createCoreController(
 
                 groupId = publishedGroup.documentId;
                 groupCache.set(trimmedGroupName, groupId);
-                console.log(
-                  `Created and published group: ${trimmedGroupName} (ID: ${groupId})`
-                );
+                // console.log(
+                //   `Created and published group: ${trimmedGroupName} (ID: ${groupId})`
+                // );
               }
             }
 
@@ -466,9 +466,9 @@ export default factories.createCoreController(
               }
             );
 
-            console.log(
-              `Created guest: ${firstName} ${lastName} (Group: ${groupName || 'None'})`
-            );
+            // console.log(
+            //   `Created guest: ${firstName} ${lastName} (Group: ${groupName || 'None'})`
+            // );
 
             importedCount++;
           } catch (rowError) {
@@ -477,9 +477,9 @@ export default factories.createCoreController(
           }
         }
 
-        console.log(
-          `Import completed: ${importedCount} guests imported, ${skippedCount} rows skipped`
-        );
+        // console.log(
+        //   `Import completed: ${importedCount} guests imported, ${skippedCount} rows skipped`
+        // );
 
         return {
           success: true,
