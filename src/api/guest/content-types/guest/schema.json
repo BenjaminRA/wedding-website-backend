@@ -23,10 +23,7 @@
       "type": "enumeration",
       "required": true,
       "default": "Adult",
-      "enum": [
-        "Adult",
-        "Child"
-      ]
+      "enum": ["Adult", "Child"]
     },
     "country": {
       "type": "enumeration",
@@ -72,6 +69,9 @@
       "inversedBy": "guests"
     },
     "address": {
+      "type": "string"
+    },
+    "table": {
       "type": "string"
     }
   }

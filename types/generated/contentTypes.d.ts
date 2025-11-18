@@ -644,6 +644,7 @@ export interface ApiGuestGuest extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     rsvp: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    table: Schema.Attribute.String;
     type: Schema.Attribute.Enumeration<['Adult', 'Child']> &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'Adult'>;
