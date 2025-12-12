@@ -98,33 +98,49 @@ export default factories.createCoreController(
 
         // Update each guest's RSVP status
         const updatedGuests = await Promise.all(
-          guests.map(async (guest: { id: number; attending: boolean }) => {
-            if (!guest.id || typeof guest.attending !== 'boolean') {
-              throw new Error('Each guest must have id and attending fields');
+          guests.map(
+            async (guest: {
+              id: number;
+              attending: boolean;
+              dietaryRestrictions?: string[];
+            }) => {
+              if (!guest.id || typeof guest.attending !== 'boolean') {
+                throw new Error('Each guest must have id and attending fields');
+              }
+
+              await strapi.entityService.update(
+                'api::guest-group.guest-group',
+                guest_group_id,
+                {
+                  data: {
+                    wishes: wishes,
+                  },
+                }
+              );
+
+              const guestData: any = {
+                invitationSent: true,
+                rsvp: true,
+                attending: guest.attending,
+              };
+
+              // Add dietary restrictions if provided
+              if (
+                guest.dietaryRestrictions &&
+                Array.isArray(guest.dietaryRestrictions)
+              ) {
+                guestData.dietaryRestrictions = guest.dietaryRestrictions;
+              }
+
+              return await strapi.entityService.update(
+                'api::guest.guest',
+                guest.id,
+                {
+                  data: guestData,
+                }
+              );
             }
-
-            await strapi.entityService.update(
-              'api::guest-group.guest-group',
-              guest_group_id,
-              {
-                data: {
-                  wishes: wishes,
-                },
-              }
-            );
-
-            return await strapi.entityService.update(
-              'api::guest.guest',
-              guest.id,
-              {
-                data: {
-                  invitationSent: true,
-                  rsvp: true,
-                  attending: guest.attending,
-                },
-              }
-            );
-          })
+          )
         );
 
         // Get the guest group with all details for the email

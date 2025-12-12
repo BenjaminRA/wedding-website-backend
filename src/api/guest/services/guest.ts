@@ -15,7 +15,7 @@ export default factories.createCoreService(
         await strapi.plugins['email'].services.email.send({
           to: process.env.MAIL_RECIPIENT!.split(';'),
           from: process.env.MAIL_USERNAME,
-          subject: `New RSVP: ${guestGroup.groupName}`,
+          subject: `New RSVP: ${guestGroup.groupName.replace(/%%.*?%%/g, '').trim()}`,
           html: emailHtml,
         });
 

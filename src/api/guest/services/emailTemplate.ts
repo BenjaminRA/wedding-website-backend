@@ -6,6 +6,7 @@ interface Guest {
   country: string;
   rsvp: boolean;
   attending: boolean;
+  dietaryRestrictions?: string[];
 }
 
 interface GuestGroup {
@@ -60,7 +61,7 @@ export const createRSVPEmailTemplate = (
                   Party
                 </h2>
                 <p style="margin: 0; font-size: 18px; color: #2C2C2C; font-weight: 500;">
-                  ${guestGroup.groupName}
+                  ${guestGroup.groupName.replace(/%%.*?%%/g, '').trim()}
                 </p>
               </div>
 
@@ -82,13 +83,28 @@ export const createRSVPEmailTemplate = (
                     } border-radius: 6px;">
                       <div style="display: flex; align-items: center;">
                         <span style="display: inline-block; width: 8px; height: 8px; background-color: #6B8068; border-radius: 50%; margin-right: 12px;"></span>
-                        <div>
+                        <div style="width: 100%;">
                           <div style="font-size: 16px; color: #2C2C2C; font-weight: 500;">
                             ${guest.firstName} ${guest.lastName}
                           </div>
                           <div style="font-size: 13px; color: #7A8F77; margin-top: 2px;">
                             ${guest.type} • ${guest.country}
                           </div>
+                          ${
+                            guest.dietaryRestrictions &&
+                            guest.dietaryRestrictions.length > 0
+                              ? `
+                          <div style="margin-top: 8px; padding: 6px 10px; background-color: #FFF8E7; border-left: 3px solid #D4A574; border-radius: 4px;">
+                            <div style="font-size: 11px; color: #8B7355; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; font-weight: 500;">
+                              Dietary Restrictions:
+                            </div>
+                            <div style="font-size: 13px; color: #6B5744; font-weight: 500;">
+                              ${guest.dietaryRestrictions.join(', ')}
+                            </div>
+                          </div>
+                          `
+                              : ''
+                          }
                         </div>
                       </div>
                     </td>
