@@ -14,7 +14,7 @@ export default factories.createCoreController(
 
         if (!firstName || !lastName || !password) {
           return ctx.badRequest(
-            'Missing required fields: firstName, lastName, password'
+            'Missing required fields: firstName, lastName, password',
           );
         }
 
@@ -23,7 +23,7 @@ export default factories.createCoreController(
           'api::password.password',
           {
             fields: ['password'],
-          }
+          },
         );
 
         // Validate password
@@ -50,7 +50,7 @@ export default factories.createCoreController(
           'api::guest.guest',
           {
             populate: ['guest_group', 'guest_group.guests'],
-          }
+          },
         );
 
         const guests = allGuests.filter((guest: any) => {
@@ -115,7 +115,7 @@ export default factories.createCoreController(
                   data: {
                     wishes: wishes,
                   },
-                }
+                },
               );
 
               const guestData: any = {
@@ -137,10 +137,10 @@ export default factories.createCoreController(
                 guest.id,
                 {
                   data: guestData,
-                }
+                },
               );
-            }
-          )
+            },
+          ),
         );
 
         // Get the guest group with all details for the email
@@ -149,7 +149,7 @@ export default factories.createCoreController(
           guest_group_id,
           {
             populate: ['guests'],
-          }
+          },
         );
 
         // Send email notification
@@ -189,6 +189,7 @@ export default factories.createCoreController(
           'Table',
           'Type',
           'Country',
+          'Dietary Restrictions',
         ];
 
         // Convert guests to CSV rows matching Table.csv format
@@ -212,6 +213,9 @@ export default factories.createCoreController(
             guest.table, // Table - not tracked in current schema
             guest.type || 'Adult',
             guest.country || 'US',
+            guest.dietaryRestrictions
+              ? guest.dietaryRestrictions.join('; ')
+              : '',
           ];
         });
 
@@ -238,7 +242,7 @@ export default factories.createCoreController(
         ctx.set('Content-Type', 'text/csv; charset=utf-8');
         ctx.set(
           'Content-Disposition',
-          `attachment; filename="guest-list-${new Date().toISOString().split('T')[0]}.csv"`
+          `attachment; filename="guest-list-${new Date().toISOString().split('T')[0]}.csv"`,
         );
 
         return csvContent;
@@ -268,7 +272,7 @@ export default factories.createCoreController(
         if (!filePath) {
           console.error('File object:', file);
           return ctx.badRequest(
-            'Could not determine file path from uploaded file'
+            'Could not determine file path from uploaded file',
           );
         }
 
@@ -315,7 +319,7 @@ export default factories.createCoreController(
 
         const existingGuests: any = await strapi.entityService.findMany(
           'api::guest.guest',
-          {}
+          {},
         );
 
         for (const guest of existingGuests) {
@@ -324,13 +328,13 @@ export default factories.createCoreController(
 
         const existingGroups: any = await strapi.entityService.findMany(
           'api::guest-group.guest-group',
-          {}
+          {},
         );
 
         for (const group of existingGroups) {
           await strapi.entityService.delete(
             'api::guest-group.guest-group',
-            group.id
+            group.id,
           );
         }
 
@@ -425,7 +429,7 @@ export default factories.createCoreController(
                     data: {
                       groupName: trimmedGroupName,
                     },
-                  }
+                  },
                 );
 
                 // Publish the group
@@ -436,7 +440,7 @@ export default factories.createCoreController(
                     data: {
                       publishedAt: new Date(),
                     },
-                  }
+                  },
                 );
 
                 groupId = publishedGroup.documentId;
@@ -479,7 +483,7 @@ export default factories.createCoreController(
               'api::guest.guest',
               {
                 data: guestData,
-              }
+              },
             );
 
             // console.log(
@@ -511,5 +515,5 @@ export default factories.createCoreController(
         return ctx.internalServerError('An error occurred while importing CSV');
       }
     },
-  })
+  }),
 );
